@@ -1,0 +1,69 @@
+body {
+  counter-reset:section;
+  background-color: #F6F6EF;
+  font-family: Verdana;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  background-color: #F4712D;
+  padding: 5px 5px;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end; */
+}
+
+header h1 {
+  font-size: 16pt;
+  display: inline;
+}
+
+header p {
+  margin-left: 5px ;
+  font-size: 10pt;
+  display: inline;
+}
+
+/* header p a {
+  color: black;
+  text-decoration: none;
+} */
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+header p a:nth-child(n + 2):before {
+  content: " | ";
+}
+
+.description,
+.selection {
+  text-align: center; /* Optional: center-align text */
+}
+
+.registration,
+.error,
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+
+input, button {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
