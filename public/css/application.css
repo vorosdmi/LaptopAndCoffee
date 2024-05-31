@@ -47,7 +47,9 @@ header p a:nth-child(n + 2):before {
 
 .registration,
 .error,
-.login {
+.info,
+.login,
+.newPlace {
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -65,5 +67,81 @@ button {
 }
 
 .error {
+  color: red;
+}
+
+.info {
+  color: green;
+}
+
+article {
+  margin: 5px 5px;
+}
+
+article h2 {
+  display: inline;
+  font-size: 10pt;
+}
+
+article p {
+  color: #8C8C8C;
+  font-size: 9pt;
+  margin: 3px 30px;
+}
+
+article p span.points:after {
+  content: " points";
+}
+
+article p span.city:before {
+  content: ' | city: ';
+}
+
+article p span.freeWiFi:before {
+  content: ' | ';
+}
+
+article p span.coffeePrice:before {
+  content: ' | coffee: ';
+}
+
+article p span.coffeePrice:after {
+  content: ' € ';
+}
+
+article p a.delete {
+  color: #8C8C8C;
+  text-decoration: underline;
+}
+
+article p a.delete:before {
+  content: '| delete (X) ';
+}
+
+
+article p a.approve {
+  /* text-decoration: none; */
+  color: #8C8C8C;
+  text-decoration: underline;
+}
+
+article p a.approve:before {
+  content: '| approve (V)';
+}
+
+.inline {
+  display: inline;
+}
+
+.upvote-button {
+  background-color: transparent;
+  border: none;
+  padding-top: 5px;
+  color: #8C8C8C;
+  vertical-align: sub;
+  padding: 1px 5px 0px 0px;
+}
+
+.btn-clicked {
   color: red;
 }

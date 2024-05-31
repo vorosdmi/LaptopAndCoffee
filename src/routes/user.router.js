@@ -3,14 +3,15 @@ const Register = require('../views/pages/Register');
 const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
 const Login = require('../views/pages/Login');
+const { secureRoute } = require('../middlewares/common')
 
 const userRouter = require('express').Router();
 
-userRouter.get('/register', (req, res) => {
+userRouter.get('/register', secureRoute, (req, res) => {
   renderTemplate(Register, {}, res)
 })
 
-userRouter.post('/register', async (req, res) => {
+userRouter.post('/register', secureRoute, async (req, res) => {
 
   const { login, email, password } = req.body;
   const user = await User.findOne({ where: { email } });
@@ -30,11 +31,11 @@ userRouter.post('/register', async (req, res) => {
   }
 })
 
-userRouter.get('/login', (req, res) => {
+userRouter.get('/login', secureRoute, (req, res) => {
   renderTemplate(Login, {}, res)
 })
 
-userRouter.post('/login', async (req, res) => {
+userRouter.post('/login', secureRoute, async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
   if (!user) {

@@ -5,9 +5,9 @@ const logger = require('morgan');
 const path = require('path');
 const indexRouter = require('./routes/index.router');
 const userRouter = require('./routes/user.router');
-const { secureRoute } = require('./middlewares/common')
 
 const session = require('express-session');
+const placesRouter = require('./routes/place.router');
 const FileStore = require('session-file-store')(session);
  
 const app = express();
@@ -35,6 +35,7 @@ app.use(session(sessionConfig));
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/places', placesRouter);
 
 app.listen(PORT, () => {
     console.log(`server started on http://localhost:${PORT}`);
