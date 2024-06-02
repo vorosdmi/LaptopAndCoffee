@@ -84,7 +84,7 @@ article h2 {
 }
 
 article p {
-  color: #8C8C8C;
+  color: black;
   font-size: 9pt;
   margin: 3px 30px;
 }
@@ -109,24 +109,25 @@ article p span.coffeePrice:after {
   content: ' € ';
 }
 
-article p a.delete {
-  color: #8C8C8C;
-  text-decoration: underline;
-}
-
 article p a.delete:before {
-  content: '| delete (X) ';
+  content: '| delete';
 }
 
 
-article p a.approve {
+article p a.approve,
+article p a.edit,
+article p a.delete {
   /* text-decoration: none; */
   color: #8C8C8C;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 article p a.approve:before {
-  content: '| approve (V)';
+  content: ' | approve';
+}
+
+article p a.edit:before {
+  content: ' | edit';
 }
 
 .inline {
@@ -144,4 +145,38 @@ article p a.approve:before {
 
 .btn-clicked {
   color: red;
+}
+
+.editPlace {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Промежуток между элементами */
+  align-items: flex-start;
+}
+
+.editPlace input,
+.editPlace label,
+.editPlace button {
+  font-size: 9px; /* Размер шрифта */
+  height: 20px; /* Высота инпутов */
+  padding: 2px 5px; /* Внутренние отступы для лучшего вида */
+  line-height: 20px; /* Выравнивание текста по центру */
+  box-sizing: border-box; /* Учитывать padding и border в общей ширине и высоте элемента */
+}
+
+.editPlace input[type="checkbox"] {
+  height: auto; /* Вернуть высоту по умолчанию для чекбоксов */
+  margin: 0; /* Убедиться, что у чекбоксов нет внешних отступов */
+}
+
+.editPlace label {
+  display: flex;
+  align-items: center; /* Выравнивание текста внутри метки по центру с чекбоксом */
+}
+
+.editPlace button {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Центрирование текста по горизонтали и вертикали */
+  padding: 0 10px; /* Дополнительные внутренние отступы */
 }

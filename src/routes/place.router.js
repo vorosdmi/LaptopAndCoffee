@@ -41,9 +41,10 @@ placesRouter.get('/new', async(req, res) => {
 placesRouter.post('/new', async (req, res) => {
   const { name, address, city, coffeePrice, show } = req.body;
   const freeWiFi = req.body.freeWiFi === 'true';
+  const { isAdmin } = req.session;
   try {
     await Place.create({ freeWiFi, name, address, city, coffeePrice, show });
-    if (show) {
+    if (isAdmin) {
       res.json({ newDone: `Success! Your places added` })  
     } else {
     res.json({ newDone: `Success! Your places will be moderated!` }); 
@@ -91,12 +92,9 @@ placesRouter.delete('/:id', async (req, res) => {
   }
 });
 
-placesRouter.put('/:id', async (req, res) => {
-  const { id } = req.params;
-  console.log('>>>>>>>>>', id);
+placesRouter.patch('/:id', async (req, res) => {
   try {
     const curPlace = await Place.findOne({ where: { id: +req.params.id } });
-    console.log(curPlace.show);
     if (curPlace) {
       curPlace.show = true;
       await curPlace.save();
@@ -112,9 +110,33 @@ placesRouter.put('/:id', async (req, res) => {
   }
 })
 
+placesRouter.put('/:id', async (req, res) => {
+  const { name, city, coffeePrice } = req.body;
+  const freeWiFi = req.body.freeWiFi === 'true';
+  try {
+    const curPlace = await Place.findOne({ where: { id: +req.params.id } });
+    console.log('curPlace', curPlace.name);
+    if (curPlace) {
+      curPlace.name = name;
+      curPlace.city = city;
+      curPlace.coffeePrice = coffeePrice;
+      curPlace.freeWiFi = freeWiFi;
+      await curPlace.save();
+    } 
+    res.json({ 
+      status: `success`,
+      editedPlace: curPlace 
+    });  
+  } catch (error) {
+    console.log(error);
+    res.json({ 
+      status: `error` 
+    });   
+  }
+})
+
 placesRouter.post('/:id/vote', async (req, res) => {
   const findPost = await Place.findOne({ where: { id: req.params.id } });
-  console.log('>>>>>>>>>', findPost);
   await findPost.increment('votes', { by: 1 });
   const postData = findPost.get({ plain: true });
   res.json({

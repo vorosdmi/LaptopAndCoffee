@@ -13,7 +13,8 @@ function Layout({ children, login, isAdmin }) {
       </head>
       <header>
         {login ? (
-          <header>
+          <>
+            <div className="header-left">
             <a href="/">
               <h1>Coffee & Laptop</h1>
             </a>
@@ -32,9 +33,14 @@ function Layout({ children, login, isAdmin }) {
               <a href="/user/logout">Выйти</a>
             </p>
               )}
-          </header>
+            </div>
+            {/* <div className="header-right">
+              <div className="weather">Barcelona</div>
+            </div> */}
+          </>
         ) : (
-          <header>
+          <>
+            <div className="header-left">
             <a href="/">
               <h1>Coffee & Laptop</h1>
             </a>
@@ -42,7 +48,11 @@ function Layout({ children, login, isAdmin }) {
               <a href="/user/register">Registration</a>
               <a href="/user/login">Login</a>
             </p>
-          </header>
+            </div>
+            {/* <div className="header-right">
+              <div className="weather">Barcelona</div>
+            </div> */}
+          </>
         )}
       </header>
       <body>{children}</body>
